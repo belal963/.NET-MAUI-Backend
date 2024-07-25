@@ -1,0 +1,14 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestWpf"
+        xmlns:UserControls="clr-namespace:TestWpf.UserControls" x:Class="TestWpf.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="715" Width="1541">
+    <Grid>
+        <UserControls:BusPage HorizontalAlignment="Left" Margin="728,200,0,0" VerticalAlignment="Top" Height="396" Width="960"/>
+        <UserControls:UserPage HorizontalAlignment="Left" Margin="-90,-62,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

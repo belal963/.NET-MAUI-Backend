@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FindUsHere.Maui.View.SettingsPage"
+             Title="Settings">
+    <Grid>
+
+        <VerticalStackLayout Spacing="5">
+            <Frame  CornerRadius="15" BackgroundColor="Transparent" HeightRequest="200" WidthRequest="300" >
+                <VerticalStackLayout Spacing="10">
+                    <Button Text="Create a new Business" BackgroundColor="White" Clicked="NewBusiness"/>
+                    <Button Text="Edit / Delete Business" BackgroundColor="White" Clicked="Edit_DeleteBusiness"/>
+                   
+                </VerticalStackLayout>
+            </Frame>
+            <Frame  CornerRadius="15" BackgroundColor="Transparent" HeightRequest="200" WidthRequest="300">
+                <VerticalStackLayout Spacing="10">
+                    <Button Text="Edit / Delet User Account" BackgroundColor="White" Clicked="Edit_DeleteUser"/>
+                    
+                </VerticalStackLayout>
+            </Frame>
+
+            <Button Text="Log Out" BackgroundColor="Red"  WidthRequest="280" />
+
+        </VerticalStackLayout>
+
+
+
+    </Grid>
+</ContentPage>

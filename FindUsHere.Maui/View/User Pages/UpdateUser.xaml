@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModel="clr-namespace:FindUsHere.ViewModelMaui;assembly=FindUsHere.ViewModeMaui"
+             x:Class="FindUsHere.Maui.View.UpdateUser"
+             Title="UpdateUser"
+             x:DataType="ViewModel:UserViewModel">
+    <ContentPage.Content>
+        <Grid>
+            <VerticalStackLayout Padding="20" Spacing="10" Margin="20">
+                <Label  Text="User Email:" />
+                <Entry Text="{Binding UserEmail}"/>
+                <Label  Text="Password:" />
+                <Entry Text="{Binding Password}"/>
+                <Button Text="Edit User Info" Command="{Binding SubmiUserUpdateCommand}" />
+                <Label Text="{Binding Message}" TextColor="Green" />
+                <Label Text="{Binding Id}" TextColor="Blue"/>
+
+
+
+            </VerticalStackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

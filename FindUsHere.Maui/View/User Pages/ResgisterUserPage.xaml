@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModel="clr-namespace:FindUsHere.ViewModelMaui;assembly=FindUsHere.ViewModeMaui"
+             x:Class="FindUsHere.Maui.View.RegisterUserPage"
+             Title="RegisterUserPage"
+             x:DataType="ViewModel:UserViewModel">
+    <ContentPage.Content>
+        <Grid>
+            <VerticalStackLayout Padding="20" Spacing="10" Margin="20">
+                <Label  Text="User Name:" />
+                <Entry Text="{Binding UserName}"/>
+                <Label  Text="User Email:" />
+                <Entry Text="{Binding UserEmail}"/>
+                <Label  Text="Password:" />
+                <Entry Text="{Binding Password}"/>
+                <Button Text="Create Account" Command="{Binding SubmitCommand}" />
+                <Label Text="" FontSize="Micro"/>
+                <Label Text="" FontSize="Micro"/>
+                <Label Text="" FontSize="Micro"/>
+                <Label Text="" FontSize="Micro"/>
+
+                <Button Text="Already have an account?" Clicked="Button_Clicked"/>
+
+                <Label Text="{Binding Message}" TextColor="Green" />
+                <Label Text="this the Id " TextColor="Blue" />
+                <Label Text="{Binding Id}" TextColor="Blue" />
+            </VerticalStackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,307 @@
+USE [master]
+GO
+/****** Object:  Database [FindUsHere]    Script Date: 12.02.2024 16:06:35 ******/
+CREATE DATABASE [FindUsHere]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'FindUsHere', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\FindUsHere.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'FindUsHere_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\FindUsHere_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
+GO
+ALTER DATABASE [FindUsHere] SET COMPATIBILITY_LEVEL = 150
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [FindUsHere].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [FindUsHere] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [FindUsHere] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [FindUsHere] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [FindUsHere] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [FindUsHere] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [FindUsHere] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [FindUsHere] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [FindUsHere] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [FindUsHere] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [FindUsHere] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [FindUsHere] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [FindUsHere] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [FindUsHere] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [FindUsHere] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [FindUsHere] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [FindUsHere] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [FindUsHere] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [FindUsHere] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [FindUsHere] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [FindUsHere] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [FindUsHere] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [FindUsHere] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [FindUsHere] SET RECOVERY FULL 
+GO
+ALTER DATABASE [FindUsHere] SET  MULTI_USER 
+GO
+ALTER DATABASE [FindUsHere] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [FindUsHere] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [FindUsHere] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [FindUsHere] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [FindUsHere] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [FindUsHere] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+ALTER DATABASE [FindUsHere] SET QUERY_STORE = OFF
+GO
+USE [FindUsHere]
+GO
+/****** Object:  Table [dbo].[BusinessInfo]    Script Date: 12.02.2024 16:06:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[BusinessInfo](
+	[RecId] [uniqueidentifier] NOT NULL,
+	[Title] [nvarchar](50) NOT NULL,
+	[Description] [nvarchar](255) NOT NULL,
+	[PhoneNumber] [nvarchar](50) NOT NULL,
+	[Email] [nvarchar](50) NOT NULL,
+	[Website] [nvarchar](50) NULL,
+	[Postcode] [int] NOT NULL,
+	[City] [nvarchar](50) NOT NULL,
+	[Street] [nvarchar](50) NOT NULL,
+	[HouseNumber] [nvarchar](50) NOT NULL,
+	[Addition] [nvarchar](50) NULL,
+	[GpsLatitude] [float] NOT NULL,
+	[GpsLongitude] [float] NOT NULL,
+	[Category_FK] [uniqueidentifier] NULL,
+	[User_FK] [uniqueidentifier] NULL,
+ CONSTRAINT [PK_BusinessInfo] PRIMARY KEY CLUSTERED 
+(
+	[RecId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Category]    Script Date: 12.02.2024 16:06:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Category](
+	[RecId] [uniqueidentifier] NOT NULL,
+	[Category] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_Category] PRIMARY KEY CLUSTERED 
+(
+	[RecId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Days]    Script Date: 12.02.2024 16:06:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Days](
+	[RecId] [uniqueidentifier] NOT NULL,
+	[Days] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_Days] PRIMARY KEY CLUSTERED 
+(
+	[RecId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[DisLiked]    Script Date: 12.02.2024 16:06:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[DisLiked](
+	[RecId] [uniqueidentifier] NOT NULL,
+	[BusinessInfo_FK] [uniqueidentifier] NOT NULL,
+	[User_FK] [uniqueidentifier] NOT NULL,
+ CONSTRAINT [PK_DisLiked] PRIMARY KEY CLUSTERED 
+(
+	[RecId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Favorites]    Script Date: 12.02.2024 16:06:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Favorites](
+	[RecId] [uniqueidentifier] NOT NULL,
+	[BusinessInfo_FK] [uniqueidentifier] NOT NULL,
+	[User_FK] [uniqueidentifier] NOT NULL,
+ CONSTRAINT [PK_Favorites] PRIMARY KEY CLUSTERED 
+(
+	[RecId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Hours]    Script Date: 12.02.2024 16:06:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Hours](
+	[RecId] [uniqueidentifier] NOT NULL,
+	[BusinessInfo_FK] [uniqueidentifier] NOT NULL,
+	[Time_Open] [time](0) NOT NULL,
+	[Time_Closed] [time](0) NOT NULL,
+	[Days_FK] [uniqueidentifier] NOT NULL,
+ CONSTRAINT [PK_Hours] PRIMARY KEY CLUSTERED 
+(
+	[RecId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Liked]    Script Date: 12.02.2024 16:06:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Liked](
+	[RecId] [uniqueidentifier] NOT NULL,
+	[BusinessInfo_FK] [uniqueidentifier] NOT NULL,
+	[User_FK] [uniqueidentifier] NOT NULL,
+ CONSTRAINT [PK_Liked] PRIMARY KEY CLUSTERED 
+(
+	[RecId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PhotoLink]    Script Date: 12.02.2024 16:06:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PhotoLink](
+	[RecId] [uniqueidentifier] NOT NULL,
+	[BusinessInfo_FK] [uniqueidentifier] NOT NULL,
+	[Link] [nvarchar](255) NOT NULL,
+ CONSTRAINT [PK_PhotoLink] PRIMARY KEY CLUSTERED 
+(
+	[RecId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[User]    Script Date: 12.02.2024 16:06:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[User](
+	[RecId] [uniqueidentifier] NOT NULL,
+	[UserName] [nvarchar](50) NOT NULL,
+	[UserEmail] [nvarchar](50) NOT NULL,
+	[Password] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED 
+(
+	[RecId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[BusinessInfo] ADD  CONSTRAINT [DF_BusinessInfo_RecId]  DEFAULT (newid()) FOR [RecId]
+GO
+ALTER TABLE [dbo].[Category] ADD  CONSTRAINT [DF_Category_RecId]  DEFAULT (newid()) FOR [RecId]
+GO
+ALTER TABLE [dbo].[Days] ADD  CONSTRAINT [DF_Days_RecId]  DEFAULT (newid()) FOR [RecId]
+GO
+ALTER TABLE [dbo].[DisLiked] ADD  CONSTRAINT [DF_DisLiked_RecId]  DEFAULT (newid()) FOR [RecId]
+GO
+ALTER TABLE [dbo].[Favorites] ADD  CONSTRAINT [DF_Favorites_RecId]  DEFAULT (newid()) FOR [RecId]
+GO
+ALTER TABLE [dbo].[Hours] ADD  CONSTRAINT [DF_Hours_RecId]  DEFAULT (newid()) FOR [RecId]
+GO
+ALTER TABLE [dbo].[Liked] ADD  CONSTRAINT [DF_Liked_RecId]  DEFAULT (newid()) FOR [RecId]
+GO
+ALTER TABLE [dbo].[PhotoLink] ADD  CONSTRAINT [DF_PhotoLink_RecId]  DEFAULT (newid()) FOR [RecId]
+GO
+ALTER TABLE [dbo].[User] ADD  CONSTRAINT [DF_User_RecId]  DEFAULT (newid()) FOR [RecId]
+GO
+ALTER TABLE [dbo].[BusinessInfo]  WITH CHECK ADD  CONSTRAINT [FK_BusinessInfo_Category] FOREIGN KEY([Category_FK])
+REFERENCES [dbo].[Category] ([RecId])
+GO
+ALTER TABLE [dbo].[BusinessInfo] CHECK CONSTRAINT [FK_BusinessInfo_Category]
+GO
+ALTER TABLE [dbo].[BusinessInfo]  WITH CHECK ADD  CONSTRAINT [FK_BusinessInfo_User] FOREIGN KEY([User_FK])
+REFERENCES [dbo].[User] ([RecId])
+GO
+ALTER TABLE [dbo].[BusinessInfo] CHECK CONSTRAINT [FK_BusinessInfo_User]
+GO
+ALTER TABLE [dbo].[DisLiked]  WITH CHECK ADD  CONSTRAINT [FK_DisLiked_BusinessInfo] FOREIGN KEY([BusinessInfo_FK])
+REFERENCES [dbo].[BusinessInfo] ([RecId])
+GO
+ALTER TABLE [dbo].[DisLiked] CHECK CONSTRAINT [FK_DisLiked_BusinessInfo]
+GO
+ALTER TABLE [dbo].[DisLiked]  WITH CHECK ADD  CONSTRAINT [FK_DisLiked_User] FOREIGN KEY([User_FK])
+REFERENCES [dbo].[User] ([RecId])
+GO
+ALTER TABLE [dbo].[DisLiked] CHECK CONSTRAINT [FK_DisLiked_User]
+GO
+ALTER TABLE [dbo].[Favorites]  WITH CHECK ADD  CONSTRAINT [FK_Favorites_BusinessInfo] FOREIGN KEY([BusinessInfo_FK])
+REFERENCES [dbo].[BusinessInfo] ([RecId])
+GO
+ALTER TABLE [dbo].[Favorites] CHECK CONSTRAINT [FK_Favorites_BusinessInfo]
+GO
+ALTER TABLE [dbo].[Favorites]  WITH CHECK ADD  CONSTRAINT [FK_Favorites_User] FOREIGN KEY([User_FK])
+REFERENCES [dbo].[User] ([RecId])
+GO
+ALTER TABLE [dbo].[Favorites] CHECK CONSTRAINT [FK_Favorites_User]
+GO
+ALTER TABLE [dbo].[Hours]  WITH CHECK ADD  CONSTRAINT [FK_Hours_BusinessInfo] FOREIGN KEY([BusinessInfo_FK])
+REFERENCES [dbo].[BusinessInfo] ([RecId])
+GO
+ALTER TABLE [dbo].[Hours] CHECK CONSTRAINT [FK_Hours_BusinessInfo]
+GO
+ALTER TABLE [dbo].[Hours]  WITH CHECK ADD  CONSTRAINT [FK_Hours_Days] FOREIGN KEY([Days_FK])
+REFERENCES [dbo].[Days] ([RecId])
+GO
+ALTER TABLE [dbo].[Hours] CHECK CONSTRAINT [FK_Hours_Days]
+GO
+ALTER TABLE [dbo].[Liked]  WITH CHECK ADD  CONSTRAINT [FK_Liked_BusinessInfo] FOREIGN KEY([BusinessInfo_FK])
+REFERENCES [dbo].[BusinessInfo] ([RecId])
+GO
+ALTER TABLE [dbo].[Liked] CHECK CONSTRAINT [FK_Liked_BusinessInfo]
+GO
+ALTER TABLE [dbo].[Liked]  WITH CHECK ADD  CONSTRAINT [FK_Liked_User] FOREIGN KEY([User_FK])
+REFERENCES [dbo].[User] ([RecId])
+GO
+ALTER TABLE [dbo].[Liked] CHECK CONSTRAINT [FK_Liked_User]
+GO
+ALTER TABLE [dbo].[PhotoLink]  WITH CHECK ADD  CONSTRAINT [FK_PhotoLink_PhotoLink] FOREIGN KEY([BusinessInfo_FK])
+REFERENCES [dbo].[BusinessInfo] ([RecId])
+GO
+ALTER TABLE [dbo].[PhotoLink] CHECK CONSTRAINT [FK_PhotoLink_PhotoLink]
+GO
+USE [master]
+GO
+ALTER DATABASE [FindUsHere] SET  READ_WRITE 
+GO

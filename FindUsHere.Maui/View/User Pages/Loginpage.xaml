@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModel="clr-namespace:FindUsHere.ViewModelMaui;assembly=FindUsHere.ViewModeMaui"
+             x:Class="FindUsHere.Maui.View.Loginpage"
+             Title="Loginpage"
+             x:DataType="ViewModel:UserViewModel"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Content>
+        <Grid>
+            <VerticalStackLayout Padding="20" Spacing="10" Margin="20">
+                <Label  Text="User Name:" />
+                <Entry Text="{Binding UserName}"/>
+                <Label  Text="Password:" />
+                <Entry Text="{Binding Password}"/>
+                <Button Text="Login" Command="{Binding SubmitLoginCommand}" />
+                <HorizontalStackLayout Spacing="10">
+                    <Label Text="did you forget your password" FontSize="Micro" VerticalOptions="Center"/>
+                    <Button Text="Reset Password" BackgroundColor="Transparent" TextColor="SkyBlue" FontSize="Micro" Margin="0" Padding="0" />
+                </HorizontalStackLayout>
+                <Label Text="" FontSize="Micro"/>
+                <Label Text="" FontSize="Micro"/>
+
+                <Button Text="Need an Account?" Clicked="Button_Clicked" />
+                <Label Text="{Binding Message}" TextColor="Red" />
+                <Label Text="the Id for this User" TextColor="Blue" />
+                <Label Text="{Binding Id}" TextColor="Blue" />
+
+            </VerticalStackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

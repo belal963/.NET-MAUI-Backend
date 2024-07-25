@@ -1,0 +1,6 @@
+@FindUsHere.RestApi_HostAddress = http://localhost:5123
+
+GET {{FindUsHere.RestApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

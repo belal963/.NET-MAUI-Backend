@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="FindUsHere.Maui.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:FindUsHere.Maui"
+    xmlns:pages="clr-namespace:FindUsHere.Maui.View"
+    Shell.FlyoutBehavior="Flyout">
+
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <StackLayout BackgroundColor="#091F35" Padding="20">
+                <Label Text="Shell Demo" FontSize="Large" TextColor="White"/>
+                <Label Text="Menu " TextColor="White"/>
+            </StackLayout>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+
+
+    <ShellItem Route="Loginpage" FlyoutItemIsVisible="False">
+        <ShellContent Title=""
+         ContentTemplate="{DataTemplate pages:LoadingPage }"
+         Shell.FlyoutBehavior="Disabled"/>
+    </ShellItem>
+ 
+    <ShellItem Route="FirstLoginpage" FlyoutItemIsVisible="False">
+    <ShellContent Title="Loginpage"
+         ContentTemplate="{DataTemplate pages:Loginpage }"
+         Shell.FlyoutBehavior="Disabled"/>
+    </ShellItem>
+
+    <FlyoutItem Title="MainPage" Route="firstPage">
+
+
+
+        
+
+        <!--<ShellContent Title="FavLikedDisLiked"
+         ContentTemplate="{DataTemplate pages:FavLikedDisLiked }"
+         Route="FavLikedDisLiked"/>-->
+
+        <ShellContent Title="Settings"
+         ContentTemplate="{DataTemplate pages:SettingsPage}"
+         Route="SettingsPage"/>
+
+    </FlyoutItem>
+
+    <ShellContent Title="RegisterUserPage"
+         ContentTemplate="{DataTemplate pages:RegisterUserPage }"
+         Route="RegisterUserPage"/>
+
+    <ShellContent Title="UpdateUser"
+         ContentTemplate="{DataTemplate pages:UpdateUser }"
+         Route="UpdateUser"/>
+
+    <ShellContent Title="DeleteUserPage"
+         ContentTemplate="{DataTemplate pages:DeleteUserPage }"
+         Route="DeleteUserPage"/>
+
+    <!--<ShellContent Title="BusinessPage"
+         ContentTemplate="{DataTemplate pages:BusinessPage }"
+         Route="BusinessPage"/>
+
+    <ShellContent Title="EditBusiness"
+         ContentTemplate="{DataTemplate pages:EditBusiness }"
+         Route="EditBusiness"/>-->
+    
+
+    <Shell.FlyoutFooterTemplate>
+        <DataTemplate>
+            <StackLayout BackgroundColor="#2097C8" Padding="20">
+                <Label Text="Footer der" FontSize="Large" TextColor="White"/>
+                <Label Text=".NET MAUI Shell" TextColor="White"/>
+            </StackLayout>
+        </DataTemplate>
+    </Shell.FlyoutFooterTemplate>
+</Shell>

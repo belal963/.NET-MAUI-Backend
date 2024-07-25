@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModel="clr-namespace:FindUsHere.ViewModelMaui;assembly=FindUsHere.ViewModeMaui"
+             x:Class="FindUsHere.Maui.View.DeleteUserPage"
+             Title="DeleteUserPage"
+             x:DataType="ViewModel:UserViewModel">
+    <ContentPage.Content>
+        <Grid>
+            <VerticalStackLayout Padding="20" Spacing="10" Margin="20">
+                <Label  Text="Are you sure you want to Delete your Account" />
+                <Button Text="Yes Delete it " Command="{Binding SubmitUserDeleteCommand}"/>
+                <Label Text="{Binding Message}" TextColor="Green" />
+                <Button Text="Logout" Clicked="Button_Clicked"/>
+            </VerticalStackLayout>
+        </Grid>
+        </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="TestWpf.UserControls.UserPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TestWpf.UserControls"
+             xmlns:dc="clr-namespace:FindUsHere.ViewModel;assembly=FindUsHere.ViewModel"
+             mc:Ignorable="d" Height="521" Width="1194">
+    <UserControl.DataContext>
+        <dc:UserViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <Label Content="Id :" HorizontalAlignment="Left" Margin="122,81,0,0" VerticalAlignment="Top" Width="92" Height="32"/>
+        <TextBox x:Name="TextBoxId" HorizontalAlignment="Left" Height="32" Margin="311,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="409" Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="User Name:" HorizontalAlignment="Left" Margin="122,171,0,0" VerticalAlignment="Top" Width="92" Height="32"/>
+        <TextBox x:Name="TextBoxUserName" HorizontalAlignment="Left" Height="32" Margin="311,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="409" Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" />
+        <Label Content="User Email:" HorizontalAlignment="Left" Margin="122,263,0,0" VerticalAlignment="Top" Width="92" Height="32"/>
+        <TextBox x:Name="TexBoxUserEmail" HorizontalAlignment="Left" Height="32" Margin="311,263,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="409" Text="{Binding UserEmail, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="122,339,0,0" VerticalAlignment="Top" Width="92" Height="32"/>
+        <TextBox x:Name="TextBoxPassword" HorizontalAlignment="Left" Height="32" Margin="311,339,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="409" Text="{Binding Password,UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="44" Margin="272,441,0,0" VerticalAlignment="Top" Width="152" Command="{Binding SubmitCommand}"/>
+        <Button Content="Get&#xD;&#xA;" HorizontalAlignment="Left" Margin="535,441,0,0" VerticalAlignment="Top" Height="44" Width="136" Command="{Binding SubmitCommand2}"/>
+        <DataGrid HorizontalAlignment="Left" Height="297" Margin="823,97,0,0" VerticalAlignment="Top" Width="325" ItemsSource="{Binding UserList}"/>
+
+
+    </Grid>
+</UserControl>
