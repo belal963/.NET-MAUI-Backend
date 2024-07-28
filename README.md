@@ -1,4 +1,4 @@
-# FUH
+# project Description
  
 The project is designed as Backend to .Net MAUI app and it provide business information based on user GPS location. It supports various operations such as retrieving business details within a specified radius, managing user accounts, and handling file uploads to Google Cloud Storage. This API is built using ASP.NET Core and integrates with Google Cloud Storage for file management.
 
