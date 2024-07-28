@@ -6,24 +6,38 @@ Features
 Business Information Retrieval:
 
 Retrieve businesses within a specified radius based on latitude and longitude.
+
 Get business details by business ID.
+
 Insert new business information.
+
 Delete business records.
+
 User Management:
 
 Register a new user.
+
 Login for existing users.
+
 Update user information.
+
 Delete user accounts.
+
 Category Management:
 
 Retrieve all available business categories.
+
 Favorites, Liked, and Disliked:
 
+
 Add or remove businesses to/from user’s favorites.
+
 Add or remove businesses to/from user’s liked list.
+
 Add or remove businesses to/from user’s disliked list.
+
 File Management:
 
 Upload files to a local directory.
+
 Upload and download files from Google Cloud Storage.
